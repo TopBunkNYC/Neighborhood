@@ -1,6 +1,51 @@
 # Neighborhood
 This module displays information about the neighborhood of a specific Staybnb listing. 
 
+## Related Projects
+
+  - https://github.com/Staybnb/Nav
+  - https://github.com/Staybnb/Listing_Description
+  - https://github.com/Staybnb/Booking
+  - https://github.com/Staybnb/Reviews
+
+
+## Table of Contents
+
+1. [Usage](#Usage)
+1. [Requirements](#requirements)
+1. [Development](#development)
+
+## Usage
+
+> Some usage instructions
+
+## Requirements
+
+## Development
+To run the application in non-development mode from within the root directory: 
+```sh
+npm run build
+npm start
+```
+
+Then access the application at (http://localhost:3001).
+
+To run in developer mode:
+```sh
+npm run react-dev
+npm run start-dev
+npm test
+```
+
+### Installing Dependencies
+
+From within the root directory:
+
+```sh
+npm install -g webpack
+npm install
+```
+
 ## Data Schema
 This module's data is stored in a SQL database. There are three tables: 
 * **Listings:** each record corresponds to one listing on Staybnb, and includes location information (lat/long) and host-inputted descriptions.
