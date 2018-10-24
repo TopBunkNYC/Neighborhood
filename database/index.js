@@ -20,7 +20,7 @@ const sequelize = new Sequelize('Neighborhood', 'dweinzimmer', '',
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Postgres connection has been established successfully.');
+    console.log('PostgreSQL connection has been established successfully.');
   })
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
