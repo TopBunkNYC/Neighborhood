@@ -10,6 +10,9 @@ const Listing = db.define('listing', {
   listingId: {
     type: Sequelize.INTEGER
   },
+  hostFirstName: {
+    type: Sequelize.STRING(50)
+  },
   neighbId: {
     type: Sequelize.INTEGER
   }, 
