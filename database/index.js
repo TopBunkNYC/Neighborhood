@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const pg = require('pg');
 const hstore = require('pg-hstore');
 
-const sequelize = new Sequelize('Neighborhood', 'dweinzimmer', '', 
+const db = new Sequelize('Neighborhood', 'dweinzimmer', '', 
   {
     host: 'localhost',
     dialect: 'postgres',
@@ -17,8 +17,7 @@ const sequelize = new Sequelize('Neighborhood', 'dweinzimmer', '',
   } 
 )
 
-sequelize
-  .authenticate()
+db.authenticate()
   .then(() => {
     console.log('PostgreSQL connection has been established successfully.');
   })
@@ -26,3 +25,4 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
+module.exports = db;
