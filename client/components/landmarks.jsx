@@ -12,14 +12,16 @@ class Landmarks extends React.Component {
         <div className="landmarks-table" style={{"width": "700px"}}>
 
           <table>
-            <tr>
-              <td>Hyde Park</td>
-              <td>0.3 mi</td>
-            </tr>
-            <tr>
-              <td>Victoria & Albert Museum</td>
-              <td>0.8 mi</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>Hyde Park</td>
+                <td>0.3 mi</td>
+              </tr>
+              <tr>
+                <td>Victoria & Albert Museum</td>
+                <td>0.8 mi</td>
+              </tr>
+            </tbody>
           </table>
 
         </div>
