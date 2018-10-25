@@ -7,8 +7,8 @@ class Map extends React.Component {
 
   render() {
     return (
-      <div class="map-section">
-        <h3>PLACEHOLDER for a map.</h3>
+      <div id="map-section">
+        <h4 style={{"color": "gray"}}>MAP GOES HERE</h4>
         <div>Exact location information is provided after a booking is confirmed.</div>
       </div>
     )

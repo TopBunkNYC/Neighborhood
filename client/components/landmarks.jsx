@@ -7,7 +7,10 @@ class Landmarks extends React.Component {
 
   render() {
     return (
-      <p>Hello from Landmarks.jsx!</p>
+      <div id="landmarks-section">
+        <h3>Nearby landmarks</h3>
+        <p>There will be a table of nearby landmarks populated here.</p>
+      </div>
     )
   }
 }
