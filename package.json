@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node ./server/server.js",
+    "seed": "node ./database/generateData.js",
     "react-dev": "webpack -d --watch",
     "start-dev": "nodemon ./server/server.js",
     "test": "jest"
