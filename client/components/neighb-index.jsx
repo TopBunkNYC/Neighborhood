@@ -13,7 +13,7 @@ export default class Neighborhood extends React.Component {
       hostNeighbDesc: "This is a long description of the neighborhood.", // this should be blank in production
       hostGettingAroundDesc: "This is a description by the host of getting around the neighborhood.", // should be blank in production
       nearbyLandmarks: [],
-      listingLocation: {}
+      listingLocation: {lat: 51.522320, lng: -0.159588}
     }
   }
 
@@ -42,7 +42,7 @@ export default class Neighborhood extends React.Component {
           
           <hr/>
           <Landmarks/>
-          <Map/>
+          <Map listingLocation={this.state.listingLocation}/>
           <hr/>
         </div>
       )
