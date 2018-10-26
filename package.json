@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node ./server/server.js",
-    "seed": "node ./database/generateData.js",
+    "seed": "node ./server/models/loadData.js",
     "react-dev": "webpack -d --watch",
     "start-dev": "nodemon ./server/server.js",
     "test": "jest"
@@ -24,7 +24,9 @@
   "devDependencies": {
     "jest": "^22.3.0",
     "morgan": "^1.9.0",
-    "puppeteer": "^1.9.0"
+    "puppeteer": "^1.9.0",
+    "random-points-on-polygon": "0.0.4",
+    "turf": "^3.0.14"
   },
   "dependencies": {
     "babel-core": "^6.26.0",

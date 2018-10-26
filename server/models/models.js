@@ -5,7 +5,8 @@ const Sequelize = require('sequelize');
 const Listing = db.define('listing', {
   id: {
     type: Sequelize.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
   listingId: {
     type: Sequelize.INTEGER
@@ -89,16 +90,6 @@ const Landmark = db.define('landmark', {
 });
 
 
-//////////// PLACEHOLDER FOR INITIALIZING TABLES //////////////
-// force: true will drop the table if it already exists
-// User.sync({force: true}).then(() => {
-//   // Table created
-//   return User.create({
-//     firstName: 'John',
-//     lastName: 'Hancock'
-//   });
-// });
-
 
 //////////// PLACEHOLDER FOR DATABASE METHODS ////////////
 /*
@@ -112,3 +103,7 @@ exports.getNeighbData = getNeighbData;
 exports.getLandmarkData = getLandmarkData;
 
 */
+
+exports.listingSchema = Listing;
+exports.neighborhoodSchema = Neighborhood;
+exports.landmarkSchema = Landmark;
