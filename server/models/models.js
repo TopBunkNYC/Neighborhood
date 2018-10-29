@@ -1,5 +1,7 @@
 const db = require('../../database/index');
 const Sequelize = require('sequelize');
+const turf = require('@turf/turf');
+const distance = require('@turf/distance');
 
 // Define Listing schema
 const Listing = db.define('listing', {
@@ -103,14 +105,30 @@ const getNeighbData = (id) => {
     where: {id}
   })
 }
-const getLandmarkData = () => {
+const getNearestLandmarks = (latLong) => {
   return Landmark.findAll()
+  .then((landmarks) => {
+    console.log('landmarks on models look like', landmarks[0])
+
+    // create an array 
+    // iterate over each landmark
+      // decorate each landmark with 'DISTANCE' from this listing
+    // sort the array by lowest distance
+    // return array.slice(0, 5)
+
+  })
 }
+
 
 exports.getListingData = getListingData;
 exports.getNeighbData = getNeighbData;
-exports.getLandmarkData = getLandmarkData;
+exports.getNearestLandmarks = getNearestLandmarks;
 
 exports.listingSchema = Listing;
 exports.neighborhoodSchema = Neighborhood;
 exports.landmarkSchema = Landmark;
+
+// const getLandmarkData = () => {
+//   return Landmark.findAll()
+// }
+// exports.getLandmarkData = getLandmarkData;

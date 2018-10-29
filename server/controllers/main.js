@@ -24,7 +24,7 @@ module.exports = {
   },
 
   getLandmarkData: (req, res) => {
-    models.getLandmarkData()
+    models.getNearestLandmarks(req.query.listingLocation)
     .then((landmarks) => {
       res.send(landmarks);
     })
