@@ -9,7 +9,7 @@ export default class Neighborhood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataLoaded: false,
+      dataLoaded: true,
       listingId: null,
       hostFirstName: null, 
       hostNeighbDesc: null,
@@ -35,7 +35,6 @@ export default class Neighborhood extends React.Component {
       {id: listingId}
     })
     .then(({data}) => {
-      console.log(data);
       this.setState({
         listingId,
         hostFirstName: data[0].hostFirstName,
@@ -46,23 +45,27 @@ export default class Neighborhood extends React.Component {
       })
     })
     .catch((err) => {console.error(err)})
-    .then(
+    .then(() => {
+      let neighbId = this.state.neighborhoodId;
       axios.get('/neighborhooddata', {params: {
-        neighborhoodId: this.state.neighborhoodId
+        id: neighbId
       }})
       .then(({data}) => {
+        console.log('data from neighborhood call:', data);
         this.setState({
-          neighbName: data.neighbName,
-          neighbDescriptors: [data.feature1, data.feature2, data.feature3, 
-            data.feature4, data.feature5, data.feature6, data.feature7],
-          city: data.cityString,
-          region: data.regionString,
-          country: data.country
+          neighbName: data[0].neighbName,
+          neighbDescriptors: [data[0].feature1, data[0].feature2, data[0].feature3, 
+            data[0].feature4, data[0].feature5, data[0].feature6, data[0].feature7],
+          city: data[0].cityString,
+          region: data[0].regionString,
+          country: data[0].country
         })
       })
-    )
+    })
     .then(
       axios.get('/landmarkdata')
+
+      // set dataloaded to true
     )
     .catch((err) => {console.error(err)})
 
