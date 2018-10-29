@@ -1,5 +1,4 @@
 ///////////////////// LISTINGS DATA ////////////////////////////
-
 //// Generate 100 points within a polygon of Central London ////
 
 const randomPointsOnPolygon = require('random-points-on-polygon');
@@ -24,12 +23,12 @@ var polygon = turf.polygon([[
 let numberOfPoints = 100;
 var points = randomPointsOnPolygon(numberOfPoints, polygon);
 
-let coords = [];
+let listingsCoords = [];
 
 for (let i = 0; i < points.length; i++) {
   // reverse order to lat-long instead long-lat
   let latLong = [points[i].geometry.coordinates[1], points[i].geometry.coordinates[0]]
-  coords.push(latLong)
+  listingsCoords.push(latLong)
 }
 
 ////// Add the points onto the listingsData from Mockaroo //////
@@ -37,10 +36,9 @@ for (let i = 0; i < points.length; i++) {
 let listingsData = require('./listingsData_no_coords').listingsArray;
 
 listingsData.forEach((listing, index) => {
-  listing.listingLat = coords[index][0];
-  listing.listingLong = coords[index][1];
+  listing.listingLat = listingsCoords[index][0];
+  listing.listingLong = listingsCoords[index][1];
 })
 
+
 exports.listingsData = listingsData;
-
-
