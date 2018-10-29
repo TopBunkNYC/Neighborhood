@@ -89,20 +89,21 @@ const Landmark = db.define('landmark', {
   }
 });
 
+//////// DATABASE METHODS ////////////
 
-
-//////////// PLACEHOLDER FOR DATABASE METHODS ////////////
-/*
-const getListingData = () => {}
-const getNeighbData = () => {}
-const getLandmarkData = () => {}
-
+const getListingData = () => {
+  return Listing.findAll()
+}
+const getNeighbData = () => {
+  return Neighborhood.findAll()
+}
+const getLandmarkData = () => {
+  return Landmark.findAll()
+}
 
 exports.getListingData = getListingData;
 exports.getNeighbData = getNeighbData;
 exports.getLandmarkData = getLandmarkData;
-
-*/
 
 exports.listingSchema = Listing;
 exports.neighborhoodSchema = Neighborhood;
