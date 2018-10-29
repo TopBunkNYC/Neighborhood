@@ -76,8 +76,6 @@ let createPoints = async () => {
     landmarkCoords.push(latLong)
   }
   
-  console.log('landmarkCoords look like', landmarkCoords) // 40 landmarkCoords
-  
   let landmarksData = [];
   
   for (let i = 0; i < landmarkCoords.length; i++) {

@@ -18,12 +18,18 @@ Listing.sync({force: true})
   console.error(err);
 })
 
-//////////// PLACEHOLDER FOR INITIALIZING TABLES //////////////
-// force: true will drop the table if it already exists
-// User.sync({force: true}).then(() => {
-//   // Table created
-//   return User.create({
-//     firstName: 'John',
-//     lastName: 'Hancock'
-//   });
-// });
+Neighborhood.sync({force: true})
+.then(() => {
+  Neighborhood.bulkCreate(neighbs)
+})
+.catch((err) => {
+  console.error(err);
+})
+
+Landmark.sync({force: true})
+.then(() => {
+  Landmark.bulkCreate(landmarks)
+})
+.catch((err) => {
+  console.error(err);
+})

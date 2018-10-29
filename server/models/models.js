@@ -50,25 +50,25 @@ const Neighborhood = db.define('neighborhood', {
     type: Sequelize.STRING(100)
   },
   feature1: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature2: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature3: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature4: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature5: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature6: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature7: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   }
 })
 
