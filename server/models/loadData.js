@@ -26,10 +26,13 @@ Neighborhood.sync({force: true})
   console.error(err);
 })
 
-Landmark.sync({force: true})
-.then(() => {
-  Landmark.bulkCreate(landmarks)
+landmarks.then((results) => {
+  Landmark.sync({force: true})
+  .then(() => {
+    Landmark.bulkCreate(results)
+  })
+  .catch((err) => {
+    console.error(err);
+  })
 })
-.catch((err) => {
-  console.error(err);
-})
+
