@@ -98,8 +98,10 @@ const getListingData = (id) => {
     }
   })
 }
-const getNeighbData = () => {
-  return Neighborhood.findAll()
+const getNeighbData = (id) => {
+  return Neighborhood.findAll({
+    where: {id}
+  })
 }
 const getLandmarkData = () => {
   return Landmark.findAll()
