@@ -5,7 +5,8 @@ const Sequelize = require('sequelize');
 const Listing = db.define('listing', {
   id: {
     type: Sequelize.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
   listingId: {
     type: Sequelize.INTEGER
@@ -49,25 +50,25 @@ const Neighborhood = db.define('neighborhood', {
     type: Sequelize.STRING(100)
   },
   feature1: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature2: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature3: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature4: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature5: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature6: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   },
   feature7: {
-    type: Sequelize.STRING(25)
+    type: Sequelize.STRING(50)
   }
 })
 
@@ -88,27 +89,26 @@ const Landmark = db.define('landmark', {
   }
 });
 
+//////// DATABASE METHODS ////////////
 
-//////////// PLACEHOLDER FOR INITIALIZING TABLES //////////////
-// force: true will drop the table if it already exists
-// User.sync({force: true}).then(() => {
-//   // Table created
-//   return User.create({
-//     firstName: 'John',
-//     lastName: 'Hancock'
-//   });
-// });
-
-
-//////////// PLACEHOLDER FOR DATABASE METHODS ////////////
-/*
-const getListingData = () => {}
-const getNeighbData = () => {}
-const getLandmarkData = () => {}
-
+const getListingData = (id) => {
+  return Listing.findAll({
+    where: {
+      listingId: id
+    }
+  })
+}
+const getNeighbData = () => {
+  return Neighborhood.findAll()
+}
+const getLandmarkData = () => {
+  return Landmark.findAll()
+}
 
 exports.getListingData = getListingData;
 exports.getNeighbData = getNeighbData;
 exports.getLandmarkData = getLandmarkData;
 
-*/
+exports.listingSchema = Listing;
+exports.neighborhoodSchema = Neighborhood;
+exports.landmarkSchema = Landmark;
