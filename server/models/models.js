@@ -91,8 +91,12 @@ const Landmark = db.define('landmark', {
 
 //////// DATABASE METHODS ////////////
 
-const getListingData = () => {
-  return Listing.findAll()
+const getListingData = (id) => {
+  return Listing.findAll({
+    where: {
+      listingId: id
+    }
+  })
 }
 const getNeighbData = () => {
   return Neighborhood.findAll()

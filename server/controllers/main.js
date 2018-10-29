@@ -4,9 +4,11 @@ const models = require('../models/models');
 // It can invoke the models to do so
 module.exports = {
   getListingData: (req, res) => { 
-    models.getListingData()
-    .then((listings) => {
-      res.send(listings);
+    console.log('req.query.id is:', req.query.id)
+
+    models.getListingData(req.query.id)
+    .then((listing) => {
+      res.send(listing);
     })
     .catch((err) => {
       console.error(err);

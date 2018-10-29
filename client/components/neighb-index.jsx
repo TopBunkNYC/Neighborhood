@@ -2,26 +2,47 @@ import React from 'react';
 import DescriptionSections from './desc-sections.jsx';
 import Landmarks from './landmarks.jsx'
 import Map from './map.jsx'
+import axios from 'axios';
 
 
 export default class Neighborhood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataLoaded: true, // this should be set to false in production
-      hostFirstName: "Lisa", // this should be blank in production
-      hostNeighbDesc: "This is a long description of the neighborhood.", // this should be blank in production
-      hostGettingAroundDesc: "This is a description by the host of getting around the neighborhood.", // should be blank in production
-      nearbyLandmarks: [],
-      listingLocation: {lat: 51.522320, lng: -0.159588}
+      dataLoaded: false,
+      listingId: null,
+      hostFirstName: null, 
+      hostNeighbDesc: null,
+      hostGettingAroundDesc: null,
+      listingLocation: null,
+      neighborhoodId: null,
+      allLandmarks: [],
+      nearbyLandmarks: []
     }
   }
 
   componentDidMount() {
-    // do axios requests for data, parsing id from window.Location
-    // set this.state.dataLoaded to true
-    // load from DB: hostFirstName, neighbDesc, gettingAroundDesc, .......
-    // 
+    let queryString = window.location.search;
+    let listingId = (queryString.slice(-3) * 1)
+    this.setState({listingId: listingId})
+
+    axios.get(`/listingdata`, { params: 
+      {id: listingId}
+    })
+    .then(({data}) => {
+      console.log(data);
+      this.setState({
+        listingId,
+        hostFirstName: data[0].hostFirstName,
+        hostNeighbDesc: data[0].neighbDesc,
+        hostGettingAroundDesc: data[0].gettingAroundDesc,
+        listingLocation: {lat: data[0].listingLat, lng: data[0].listingLong},
+        neighborhoodId: data[0].neighbId
+      })
+    })
+    .catch((err) => {console.error(err)})
+
+    this.setState({dataLoaded: true});
   }
 
   render() {
