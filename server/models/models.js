@@ -112,12 +112,12 @@ const getNeighbData = (id) => {
 
 const getNearestLandmarks = (latLong) => {
   console.log('input of latlong at very beginning of model is ', latLong)
-  return Landmark.findAll()
+  Landmark.findAll()
   .then((landmarks) => {
     // console.log('landmarks on models look like', landmarks[0]);
     latLong = JSON.parse(latLong);
 
-    let decoratedLandmarks = landmarks.map((landmark) => {
+    return decoratedLandmarks = landmarks.map((landmark) => {
       let from = turf.point([latLong.lng, latLong.lat]);
       let to = turf.point([landmark.landmarkLong, landmark.landmarkLat]);
       let options = {units: 'miles'};
@@ -128,17 +128,18 @@ const getNearestLandmarks = (latLong) => {
         landmarkName: landmark.landmarkName,
         distance: turf.distance(from, to, options)
       })
-      // landmark.distance = turf.distance(from, to, options);
-      // if (index === 0) console.log('decorated landmark is ', landmark)
     })
 
     console.log('decoratedLandmarks looks like', decoratedLandmarks[0]);
-    // create an array 
-    // iterate over each landmark
-      // decorate each landmark with 'DISTANCE' from this listing
-    // sort the array by lowest distance
-    // return array.slice(0, 5)
 
+
+  })
+  .then((decoratedLandmarks) => {
+    decoratedLandmarks.sort((a, b) => {
+      //return Landmark.get(distance) for a - Landmark.get(distance) for b
+    })
+
+    // return decoratedLandmarks.slice(0, 5)
   })
 }
 
