@@ -9,7 +9,7 @@ export default class Neighborhood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataLoaded: true,
+      dataLoaded: false,
       listingId: null,
       hostFirstName: null, 
       hostNeighbDesc: null,
@@ -21,7 +21,6 @@ export default class Neighborhood extends React.Component {
       city: null, 
       region: null,
       country: null,
-      allLandmarks: [],
       nearbyLandmarks: []
     }
   }
@@ -54,7 +53,7 @@ export default class Neighborhood extends React.Component {
         id: neighbId
       }})
       .then(({data}) => {
-        console.log('data from neighborhood call:', data);
+        // console.log('data from neighborhood call:', data);
         this.setState({
           neighbName: data[0].neighbName,
           neighbDescriptors: [data[0].feature1, data[0].feature2, data[0].feature3, 
@@ -71,8 +70,13 @@ export default class Neighborhood extends React.Component {
       axios.get('/landmarkdata', {params: {
         listingLocation: this.state.listingLocation
       }})
-
-      // set dataloaded to true
+      .then(({data}) => {
+        // console.log('landmark data sent to client looks like', data);
+        this.setState({
+          nearbyLandmarks: data,
+          dataLoaded: true
+        })
+      })
     })
     .catch((err) => {console.error(err)})
 
