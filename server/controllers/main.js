@@ -4,8 +4,6 @@ const models = require('../models/models');
 // It can invoke the models to do so
 module.exports = {
   getListingData: (req, res) => { 
-    console.log('req.query.id is:', req.query.id)
-
     models.getListingData(req.query.id)
     .then((listing) => {
       res.send(listing);
@@ -16,9 +14,9 @@ module.exports = {
   }, 
 
   getNeighbData: (req, res) => {
-    models.getNeighbData()
-    .then((neighborhoods) => {
-      res.send(neighborhoods);
+    models.getNeighbData(req.query.id)
+    .then((neighborhood) => {
+      res.send(neighborhood);
     })
     .catch((err) => {
       console.error(err);
@@ -26,10 +24,11 @@ module.exports = {
   },
 
   getLandmarkData: (req, res) => {
-    models.getLandmarkData()
+    models.calcNearestLandmarks(req.query.listingLocation)
+    .then(models.getLandmarkData()
     .then((landmarks) => {
       res.send(landmarks);
-    })
+    }))
     .catch((err) => {
       console.error(err);
     })

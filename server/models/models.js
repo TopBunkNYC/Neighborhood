@@ -1,5 +1,7 @@
 const db = require('../../database/index');
 const Sequelize = require('sequelize');
+const turf = require('@turf/turf');
+const distance = require('@turf/distance');
 
 // Define Listing schema
 const Listing = db.define('listing', {
@@ -86,6 +88,9 @@ const Landmark = db.define('landmark', {
   },
   landmarkLong: {
     type: Sequelize.FLOAT
+  },
+  distance: {
+    type: Sequelize.FLOAT
   }
 });
 
@@ -98,17 +103,46 @@ const getListingData = (id) => {
     }
   })
 }
-const getNeighbData = () => {
-  return Neighborhood.findAll()
+
+const getNeighbData = (id) => {
+  return Neighborhood.findAll({
+    where: {id}
+  })
 }
-const getLandmarkData = () => {
+
+const calcNearestLandmarks = (latLong) => {
   return Landmark.findAll()
+  .then((landmarks) => {
+    latLong = JSON.parse(latLong);
+
+    return Promise.all(landmarks.map((landmark) => {
+      // from the current listing
+      let from = turf.point([latLong.lng, latLong.lat]);
+      // to this landmark
+      let to = turf.point([landmark.landmarkLong, landmark.landmarkLat]);
+      let options = {units: 'miles'};
+
+      return Landmark.update(
+        {distance: turf.distance(from, to, options)},
+        {where: {id: landmark.id}}
+      )
+    }))
+  })
+}
+
+const getLandmarkData = () => {
+  return Landmark.findAll({
+    order: Sequelize.literal('distance ASC'),
+    limit: 5
+  })
 }
 
 exports.getListingData = getListingData;
 exports.getNeighbData = getNeighbData;
+exports.calcNearestLandmarks = calcNearestLandmarks;
 exports.getLandmarkData = getLandmarkData;
 
 exports.listingSchema = Listing;
 exports.neighborhoodSchema = Neighborhood;
 exports.landmarkSchema = Landmark;
+

@@ -16,7 +16,11 @@ export default class Neighborhood extends React.Component {
       hostGettingAroundDesc: null,
       listingLocation: null,
       neighborhoodId: null,
-      allLandmarks: [],
+      neighbName: null,
+      neighbDescriptors: null,
+      city: null, 
+      region: null,
+      country: null,
       nearbyLandmarks: []
     }
   }
@@ -26,11 +30,11 @@ export default class Neighborhood extends React.Component {
     let listingId = (queryString.slice(-3) * 1)
     this.setState({listingId: listingId})
 
-    axios.get(`/listingdata`, { params: 
+    // Get listing data
+    axios.get('/listingdata', { params: 
       {id: listingId}
     })
     .then(({data}) => {
-      console.log(data);
       this.setState({
         listingId,
         hostFirstName: data[0].hostFirstName,
@@ -41,8 +45,39 @@ export default class Neighborhood extends React.Component {
       })
     })
     .catch((err) => {console.error(err)})
+    
+    // Get neighborhood data
+    .then(() => {
+      let neighbId = this.state.neighborhoodId;
+      axios.get('/neighborhooddata', {params: {
+        id: neighbId
+      }})
+      .then(({data}) => {
+        this.setState({
+          neighbName: data[0].neighbName,
+          neighbDescriptors: [data[0].feature1, data[0].feature2, data[0].feature3, 
+            data[0].feature4, data[0].feature5, data[0].feature6, data[0].feature7],
+          city: data[0].cityString,
+          region: data[0].regionString,
+          country: data[0].country
+        })
+      })
+    })
 
-    this.setState({dataLoaded: true});
+    // Get landmark data for five nearest landmarks to this location
+    .then(() => {
+      axios.get('/landmarkdata', {params: {
+        listingLocation: this.state.listingLocation
+      }})
+      .then(({data}) => {
+        this.setState({
+          nearbyLandmarks: data,
+          dataLoaded: true
+        })
+      })
+    })
+    .catch((err) => {console.error(err)})
+
   }
 
   render() {
@@ -57,12 +92,17 @@ export default class Neighborhood extends React.Component {
 
           <DescriptionSections 
             hostname={this.state.hostFirstName} 
+            neighbName={this.state.neighbName}              
+            neighbDescriptors={this.state.neighbDescriptors}
+            city={this.state.city}                          
+            region={this.state.region}                      
+            country={this.state.country}                      
             neighbDesc={this.state.hostNeighbDesc} 
             gettingAround={this.state.hostGettingAroundDesc} 
           />
           
           <hr/>
-          <Landmarks/>
+          <Landmarks nearbyLandmarks={this.state.nearbyLandmarks}/>
           <Map listingLocation={this.state.listingLocation}/>
           <hr/>
         </div>
@@ -70,3 +110,11 @@ export default class Neighborhood extends React.Component {
     }
   }
 }
+
+/*
+      neighbName: null,
+      neighbDescriptors: null,
+      city: null, 
+      region: null,
+      country: null,
+*/
