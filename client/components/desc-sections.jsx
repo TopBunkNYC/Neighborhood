@@ -10,7 +10,15 @@ class DescriptionSection extends React.Component {
   render() {
     return (
       <div id="descriptions-container">
-        <DescribeNeighborhood hostname={this.props.hostname} description={this.props.neighbDesc}/>
+        <DescribeNeighborhood 
+          hostname={this.props.hostname} 
+          city={this.props.city} 
+          region={this.props.region} 
+          country={this.props.country}
+          neighbName={this.props.neighbName} 
+          neighbDescriptors={this.props.neighbDescriptors} 
+          description={this.props.neighbDesc}
+        />
         <GettingAround description={this.props.gettingAround}/>
       </div>
     )

@@ -1,18 +1,44 @@
 import React from 'react';
 
 const DescribeNeighborhood = (props) => {
-  const city = 'https://www.airbnb.com/s/London--United-Kingdom';
-  const state = 'https://www.airbnb.com/s/England--United-Kingdom';
-  const country = 'https://www.airbnb.com/s/United-Kingdom';
+  // const city = 'https://www.airbnb.com/s/London--United-Kingdom';
+  // const state = 'https://www.airbnb.com/s/England--United-Kingdom';
+  // const country = 'https://www.airbnb.com/s/United-Kingdom';
+  const prefix = 'https://www.airbnb.com/s/';
+  let country = props.country.split('');
+  for (let i = 0, len = country.length; i < len; i++) {
+    if (country[i] === ' ') {
+      country[i] = '-'
+    }
+  }
+  country = country.join('');
 
   return (
     <React.Fragment>
-      <p>{props.hostname}'s home is located in <a href={city}>London,</a> <a href={state}>England,</a> <a href={country}>United Kingdom.</a></p>
-      <div id="host-description-of-neighborhood">
-        {props.description}
+      <div id="airbnb-desc-of-neighb">
+        <p><b>Features</b> · {props.neighbDescriptors.join(' · ')}</p>
+      </div>
+      <p>{props.hostname}'s home is located in <a href={
+          prefix + props.city + '--' + country
+        }>{props.city},</a> <a href={
+          prefix + props.region + '--' + country
+        }>{props.region},</a> <a href={
+          prefix + country
+        }>{props.country}.</a>
+      </p>
+      <div id="host-desc-of-neighb">
+        <p>{props.description}</p>
       </div>
     </React.Fragment>
   )
 }
 
 export default DescribeNeighborhood;
+
+/*
+      neighbName: null, x 
+      neighbDescriptors: null, x 
+      city: null,  x
+      region: null, x
+      country: null, x
+*/

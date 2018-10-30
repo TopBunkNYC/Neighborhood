@@ -117,6 +117,4 @@ export default class Neighborhood extends React.Component {
       city: null, 
       region: null,
       country: null,
-      nearbyLandmarks: []
-
 */
