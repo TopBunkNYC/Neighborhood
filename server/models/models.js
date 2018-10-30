@@ -117,24 +117,23 @@ const getNearestLandmarks = (latLong) => {
     // console.log('landmarks on models look like', landmarks[0]);
     latLong = JSON.parse(latLong);
 
-    return decoratedLandmarks = landmarks.map((landmark) => {
+    landmarks.forEach((landmark) => {
+      // from listing
       let from = turf.point([latLong.lng, latLong.lat]);
+      // to this landmark
       let to = turf.point([landmark.landmarkLong, landmark.landmarkLat]);
       let options = {units: 'miles'};
-      console.log('distance is ', turf.distance(from, to, options))
+      // console.log('distance is ', turf.distance(from, to, options))
 
-      return Landmark.build({
-        id: landmark.id,
-        landmarkName: landmark.landmarkName,
-        distance: turf.distance(from, to, options)
-      })
+      Landmark.update(
+        {distance: turf.distance(from, to, options)},
+        {where: {id: landmark.id}}
+      )
     })
-
-    console.log('decoratedLandmarks looks like', decoratedLandmarks[0]);
-
-
   })
   .then((decoratedLandmarks) => {
+    console.log('decoratedLandmarks looks like', decoratedLandmarks);
+    return decoratedLandmarks;
     decoratedLandmarks.sort((a, b) => {
       //return Landmark.get(distance) for a - Landmark.get(distance) for b
     })
