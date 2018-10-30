@@ -53,7 +53,6 @@ export default class Neighborhood extends React.Component {
         id: neighbId
       }})
       .then(({data}) => {
-        // console.log('data from neighborhood call:', data);
         this.setState({
           neighbName: data[0].neighbName,
           neighbDescriptors: [data[0].feature1, data[0].feature2, data[0].feature3, 
@@ -71,7 +70,6 @@ export default class Neighborhood extends React.Component {
         listingLocation: this.state.listingLocation
       }})
       .then(({data}) => {
-        // console.log('landmark data sent to client looks like', data);
         this.setState({
           nearbyLandmarks: data,
           dataLoaded: true
@@ -94,12 +92,17 @@ export default class Neighborhood extends React.Component {
 
           <DescriptionSections 
             hostname={this.state.hostFirstName} 
+            neighbName={this.state.neighbName}              
+            neighbDescriptors={this.state.neighbDescriptors}
+            city={this.state.city}                          
+            region={this.state.region}                      
+            country={this.state.country}                      
             neighbDesc={this.state.hostNeighbDesc} 
             gettingAround={this.state.hostGettingAroundDesc} 
           />
           
           <hr/>
-          <Landmarks/>
+          <Landmarks nearbyLandmarks={this.state.nearbyLandmarks}/>
           <Map listingLocation={this.state.listingLocation}/>
           <hr/>
         </div>
@@ -107,3 +110,13 @@ export default class Neighborhood extends React.Component {
     }
   }
 }
+
+/*
+      neighbName: null,
+      neighbDescriptors: null,
+      city: null, 
+      region: null,
+      country: null,
+      nearbyLandmarks: []
+
+*/

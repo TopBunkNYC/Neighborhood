@@ -13,14 +13,14 @@ class Landmarks extends React.Component {
 
           <table>
             <tbody>
-              <tr>
-                <td>Hyde Park</td>
-                <td>0.3 mi</td>
-              </tr>
-              <tr>
-                <td>Victoria & Albert Museum</td>
-                <td>0.8 mi</td>
-              </tr>
+              {this.props.nearbyLandmarks.map((landmark) => {
+                return (
+                  <tr key={landmark.id}>
+                    <td>{landmark.landmarkName}</td>
+                    <td>{Math.round(landmark.distance * 10) / 10} mi</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
 
