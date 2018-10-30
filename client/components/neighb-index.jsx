@@ -88,7 +88,7 @@ export default class Neighborhood extends React.Component {
     } else {
       return(
         <div className="app">
-          <h2>The neighborhood</h2>
+          <h2 className="section-title">The neighborhood</h2>
 
           <DescriptionSections 
             hostname={this.state.hostFirstName} 

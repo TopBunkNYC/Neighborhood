@@ -21,8 +21,12 @@
     "url": "https://github.com/Staybnb/Neighborhood/issues"
   },
   "homepage": "https://github.com/Staybnb/Neighborhood#readme",
+  "jest": {
+    "testURL": "http://localhost:3001/listing?id=9873027"
+  },
   "devDependencies": {
-    "jest": "^22.3.0",
+    "babel-jest": "^23.6.0",
+    "jest": "^22.4.4",
     "morgan": "^1.9.0",
     "puppeteer": "^1.9.0",
     "random-points-on-polygon": "0.0.4",
