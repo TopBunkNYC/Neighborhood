@@ -15,7 +15,7 @@ class Map extends React.Component {
           listingLocation={this.props.listingLocation} 
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPIKEY}&v=3.exp&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
+          containerElement={<div style={{ height: `350px`, width: `595px` }} />}
           mapElement={<div style={{ height: `100%` }} />} 
         />
         <div>Exact location information is provided after a booking is confirmed.</div>
