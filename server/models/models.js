@@ -110,48 +110,39 @@ const getNeighbData = (id) => {
   })
 }
 
-const getNearestLandmarks = (latLong) => {
-  console.log('input of latlong at very beginning of model is ', latLong)
-  Landmark.findAll()
+const calcNearestLandmarks = (latLong) => {
+  return Landmark.findAll()
   .then((landmarks) => {
-    // console.log('landmarks on models look like', landmarks[0]);
     latLong = JSON.parse(latLong);
 
-    landmarks.forEach((landmark) => {
-      // from listing
+    return Promise.all(landmarks.map((landmark) => {
+      // from the current listing
       let from = turf.point([latLong.lng, latLong.lat]);
       // to this landmark
       let to = turf.point([landmark.landmarkLong, landmark.landmarkLat]);
       let options = {units: 'miles'};
-      // console.log('distance is ', turf.distance(from, to, options))
 
-      Landmark.update(
+      return Landmark.update(
         {distance: turf.distance(from, to, options)},
         {where: {id: landmark.id}}
       )
-    })
-  })
-  .then((decoratedLandmarks) => {
-    console.log('decoratedLandmarks looks like', decoratedLandmarks);
-    return decoratedLandmarks;
-    decoratedLandmarks.sort((a, b) => {
-      //return Landmark.get(distance) for a - Landmark.get(distance) for b
-    })
-
-    // return decoratedLandmarks.slice(0, 5)
+    }))
   })
 }
 
+const getLandmarkData = () => {
+  return Landmark.findAll({
+    order: Sequelize.literal('distance ASC'),
+    limit: 5
+  })
+}
 
 exports.getListingData = getListingData;
 exports.getNeighbData = getNeighbData;
-exports.getNearestLandmarks = getNearestLandmarks;
+exports.calcNearestLandmarks = calcNearestLandmarks;
+exports.getLandmarkData = getLandmarkData;
 
 exports.listingSchema = Listing;
 exports.neighborhoodSchema = Neighborhood;
 exports.landmarkSchema = Landmark;
 
-// const getLandmarkData = () => {
-//   return Landmark.findAll()
-// }
-// exports.getLandmarkData = getLandmarkData;

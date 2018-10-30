@@ -24,10 +24,11 @@ module.exports = {
   },
 
   getLandmarkData: (req, res) => {
-    models.getNearestLandmarks(req.query.listingLocation)
+    models.calcNearestLandmarks(req.query.listingLocation)
+    .then(models.getLandmarkData()
     .then((landmarks) => {
       res.send(landmarks);
-    })
+    }))
     .catch((err) => {
       console.error(err);
     })
