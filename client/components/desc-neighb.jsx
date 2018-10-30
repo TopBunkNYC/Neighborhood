@@ -1,9 +1,6 @@
 import React from 'react';
 
 const DescribeNeighborhood = (props) => {
-  // const city = 'https://www.airbnb.com/s/London--United-Kingdom';
-  // const state = 'https://www.airbnb.com/s/England--United-Kingdom';
-  // const country = 'https://www.airbnb.com/s/United-Kingdom';
   const prefix = 'https://www.airbnb.com/s/';
   let country = props.country.split('');
   for (let i = 0, len = country.length; i < len; i++) {
@@ -34,11 +31,3 @@ const DescribeNeighborhood = (props) => {
 }
 
 export default DescribeNeighborhood;
-
-/*
-      neighbName: null, x 
-      neighbDescriptors: null, x 
-      city: null,  x
-      region: null, x
-      country: null, x
-*/
