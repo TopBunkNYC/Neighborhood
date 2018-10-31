@@ -25,8 +25,14 @@ afterAll(() => {
 
 describe('search functionality', () => {
   test('initial title is rendered', async () => {
-    const div = '.section-title'
+    let div = '.section-title'
     const title = await page.$eval(div, (el) => el.textContent)
     expect(title).toEqual('The neighborhood')
+  })
+
+  test('there is a map', async () => {
+    let div = '#map';
+    const map = await page.$eval(div, (el) => (el ? true : false));
+    expect(map).toBe(true);
   })
 })

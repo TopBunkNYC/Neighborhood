@@ -5,6 +5,7 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={14}
     defaultCenter={props.listingLocation}
+    id="map"
   >
     {props.isMarkerShown && <Marker position={props.listingLocation}/>}
 
