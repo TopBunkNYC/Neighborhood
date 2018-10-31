@@ -67,19 +67,19 @@ export default class Neighborhood extends React.Component {
     })
 
     // Get landmark data for five nearest landmarks to this location
-    .then(() => {
-      axios.get('/landmarkdata', {params: {
-        // listingLocation: this.state.listingLocation
-        listingLat: this.state.listingLat, 
-        listingLong: this.state.listingLong
-      }})
-      .then(({data}) => {
-        this.setState({
-          nearbyLandmarks: data,
-          dataLoaded: true
-        })
-      })
-    })
+    // .then(() => {
+    //   axios.get('/landmarkdata', {params: {
+    //     // listingLocation: this.state.listingLocation
+    //     listingLat: this.state.listingLat, 
+    //     listingLong: this.state.listingLong
+    //   }})
+    //   .then(({data}) => {
+    //     this.setState({
+    //       nearbyLandmarks: data,
+    //       dataLoaded: true
+    //     })
+    //   })
+    // })
     .catch((err) => {console.error(err)})
 
   }
