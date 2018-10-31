@@ -67,7 +67,7 @@ export default class Neighborhood extends React.Component {
     // Get landmark data for five nearest landmarks to this location
     .then(() => {
       axios.get('/landmarkdata', {params: {
-        listingLocation: this.state.listingLocation
+        listingLocation: `${this.state.listingLocation}`
       }})
       .then(({data}) => {
         this.setState({
