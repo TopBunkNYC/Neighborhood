@@ -31,9 +31,11 @@ export default class Neighborhood extends React.Component {
     this.setState({listingId: listingId})
 
     // Get listing data
-    axios.get('/listingdata', { params: 
-      {id: listingId}
-    })
+    // axios.get('/listingdata', { params: 
+    //   {id: listingId}
+    // })
+
+    axios.get('http://ec2-3-16-89-66.us-east-2.compute.amazonaws.com/listingdata?id=97')
     .then(({data}) => {
       console.log('the very first data looks like...', data)
       this.setState({
@@ -50,22 +52,22 @@ export default class Neighborhood extends React.Component {
     .catch((err) => {console.error(err)})
     
     // Get neighborhood data
-    .then(() => {
-      let neighbId = this.state.neighborhoodId;
-      axios.get('/neighborhooddata', {params: {
-        id: neighbId
-      }})
-      .then(({data}) => {
-        this.setState({
-          neighbName: data[0].neighbName,
-          neighbDescriptors: [data[0].feature1, data[0].feature2, data[0].feature3, 
-            data[0].feature4, data[0].feature5, data[0].feature6, data[0].feature7],
-          city: data[0].cityString,
-          region: data[0].regionString,
-          country: data[0].country
-        })
-      })
-    })
+    // .then(() => {
+    //   let neighbId = this.state.neighborhoodId;
+    //   axios.get('/neighborhooddata', {params: {
+    //     id: neighbId
+    //   }})
+    //   .then(({data}) => {
+    //     this.setState({
+    //       neighbName: data[0].neighbName,
+    //       neighbDescriptors: [data[0].feature1, data[0].feature2, data[0].feature3, 
+    //         data[0].feature4, data[0].feature5, data[0].feature6, data[0].feature7],
+    //       city: data[0].cityString,
+    //       region: data[0].regionString,
+    //       country: data[0].country
+    //     })
+    //   })
+    // })
 
     // Get landmark data for five nearest landmarks to this location
     // .then(() => {
@@ -81,7 +83,7 @@ export default class Neighborhood extends React.Component {
     //     })
     //   })
     // })
-    .catch((err) => {console.error(err)})
+    // .catch((err) => {console.error(err)})
 
   }
 
