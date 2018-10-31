@@ -110,8 +110,8 @@ const getNeighbData = (id) => {
   })
 }
 
-const calcNearestLandmarks = (lat, long) => {
-  return Landmark.findAll()
+const calcNearestLandmarks = async (lat, long) => {
+  return await Landmark.findAll()
   .then((landmarks) => {
     // latLong = JSON.parse(JSON.stringify(latLong));
     console.log('LAT AND LONG LOOK LIKE', lat, long);
