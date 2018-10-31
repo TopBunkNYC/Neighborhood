@@ -35,6 +35,7 @@ export default class Neighborhood extends React.Component {
       {id: listingId}
     })
     .then(({data}) => {
+      console.log('the very first data looks like...', data)
       this.setState({
         listingId,
         hostFirstName: data[0].hostFirstName,
