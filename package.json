@@ -13,7 +13,7 @@
     "start-aws": "pm2 start ./server/server.js",
     "listpm2": "pm2 list",
     "pm2server": "pm2 show server",
-    "pm2stop": "pm2 stop",
+    "pm2stop": "pm2 stop 0",
     "connect": "ssh -i \"neighborhood-ec2-keypair.pem\" ubuntu@ec2-3-16-89-66.us-east-2.compute.amazonaws.com"
   },
   "repository": {
