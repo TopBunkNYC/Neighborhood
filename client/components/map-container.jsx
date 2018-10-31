@@ -4,9 +4,9 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, Circle } from "react-go
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={14}
-    defaultCenter={props.listingLocation}
+    defaultCenter={{lat: props.lat, lng: props.long}}
   >
-    {props.isMarkerShown && <Marker position={props.listingLocation}/>}
+    {props.isMarkerShown && <Marker position={{lat: props.lat, lng: props.long}}/>}
 
   </GoogleMap>
 ))

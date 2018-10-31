@@ -12,7 +12,8 @@ class Map extends React.Component {
       <div id="map-section">
         <MapContainer 
           isMarkerShown 
-          listingLocation={this.props.listingLocation} 
+          lat={this.props.lat} 
+          long={this.props.long} 
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPIKEY}&v=3.exp&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `350px`, width: `595px` }} />}

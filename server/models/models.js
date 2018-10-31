@@ -110,14 +110,14 @@ const getNeighbData = (id) => {
   })
 }
 
-const calcNearestLandmarks = (latLong) => {
+const calcNearestLandmarks = (lat, long) => {
   return Landmark.findAll()
   .then((landmarks) => {
-    latLong = JSON.parse(JSON.stringify(latLong));
+    // latLong = JSON.parse(JSON.stringify(latLong));
 
     return Promise.all(landmarks.map((landmark) => {
       // from the current listing
-      let from = turf.point([latLong.lng, latLong.lat]);
+      let from = turf.point([long, lat]);
       // to this landmark
       let to = turf.point([landmark.landmarkLong, landmark.landmarkLat]);
       let options = {units: 'miles'};
