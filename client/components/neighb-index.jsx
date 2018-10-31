@@ -35,9 +35,7 @@ export default class Neighborhood extends React.Component {
       {id: listingId}
     })
 
-    // axios.get('http://ec2-3-16-89-66.us-east-2.compute.amazonaws.com/listingdata?id=97')
     .then(({data}) => {
-      console.log('the very first data looks like...', data[0])
       this.setState({
         listingId,
         hostFirstName: data[0].hostFirstName,
@@ -83,7 +81,6 @@ export default class Neighborhood extends React.Component {
       })
     })
     .catch((err) => {console.error(err)})
-
   }
 
   render() {
@@ -116,11 +113,3 @@ export default class Neighborhood extends React.Component {
     }
   }
 }
-
-/*
-      neighbName: null,
-      neighbDescriptors: null,
-      city: null, 
-      region: null,
-      country: null,
-*/
