@@ -11,6 +11,7 @@
     "start-dev": "nodemon ./server/server.js",
     "test": "jest",
     "start-aws": "pm2 start ./server/server.js",
+    "listpm2": "pm2 list",
     "connect": "ssh -i \"neighborhood-ec2-keypair.pem\" ubuntu@ec2-3-16-89-66.us-east-2.compute.amazonaws.com"
   },
   "repository": {
