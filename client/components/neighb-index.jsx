@@ -31,13 +31,14 @@ export default class Neighborhood extends React.Component {
     this.setState({listingId: listingId})
 
     // Get listing data
-    // axios.get('/listingdata', { params: 
+    axios.get('/listingdata?id=97')
+    // , { params: 
     //   {id: listingId}
     // })
 
-    axios.get('http://ec2-3-16-89-66.us-east-2.compute.amazonaws.com/listingdata?id=97')
+    // axios.get('http://ec2-3-16-89-66.us-east-2.compute.amazonaws.com/listingdata?id=97')
     .then(({data}) => {
-      console.log('the very first data looks like...', data)
+      console.log('the very first data looks like...', data[0])
       this.setState({
         listingId,
         hostFirstName: data[0].hostFirstName,
