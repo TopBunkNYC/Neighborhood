@@ -27,12 +27,13 @@ export default class Neighborhood extends React.Component {
 
   componentDidMount() {
     let queryString = window.location.search;
-    // console.log('window.location looks like', window.location)
     let listingId = (queryString.slice(-3) * 1)
     this.setState({listingId: listingId})
 
     // Get listing data
-    axios.get(`${window.location.origin}/listingdata?id=${listingId}`)
+    axios.get(`/listingdata`, { params: 
+      {id: listingId}
+    })
 
     // axios.get('http://ec2-3-16-89-66.us-east-2.compute.amazonaws.com/listingdata?id=97')
     .then(({data}) => {
@@ -52,7 +53,9 @@ export default class Neighborhood extends React.Component {
     // Get neighborhood data
     .then(() => {
       let neighbId = this.state.neighborhoodId;
-      axios.get(`${window.location.origin}/neighborhooddata?id=${neighbId}`)
+      axios.get('/neighborhooddata', {params: {
+        id: neighbId
+      }})
       .then(({data}) => {
         this.setState({
           neighbName: data[0].neighbName,
@@ -67,7 +70,11 @@ export default class Neighborhood extends React.Component {
 
     // Get landmark data for five nearest landmarks to this location
     .then(() => {
-      axios.get(`${window.location.origin}/landmarkdata?listingLat=${this.state.listingLat}&listingLong=${this.state.listingLong}`)
+      axios.get('/landmarkdata', {params: {
+        // listingLocation: this.state.listingLocation
+        listingLat: this.state.listingLat, 
+        listingLong: this.state.listingLong
+      }})
       .then(({data}) => {
         this.setState({
           nearbyLandmarks: data,
