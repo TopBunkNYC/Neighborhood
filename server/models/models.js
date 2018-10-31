@@ -113,7 +113,7 @@ const getNeighbData = (id) => {
 const calcNearestLandmarks = (latLong) => {
   return Landmark.findAll()
   .then((landmarks) => {
-    latLong = JSON.parse(latLong);
+    latLong = JSON.parse(JSON.stringify(latLong));
 
     return Promise.all(landmarks.map((landmark) => {
       // from the current listing
