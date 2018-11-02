@@ -19,5 +19,14 @@ module.exports = {
   output: {
     path: __dirname + '/public',
     filename: 'app.js',
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({                      // Reduce size of React
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin(),          // Minify everything
+    new webpack.optimize.AggressiveMergingPlugin()  // Merge chunks 
+  ],
 };
