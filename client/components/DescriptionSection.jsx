@@ -2,27 +2,21 @@ import React from 'react';
 import DescribeNeighborhood from './DescribeNeighborhood.jsx';
 import GettingAround from './GettingAround.jsx';
 
-class DescriptionSection extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div id="descriptions-container">
-        <DescribeNeighborhood 
-          hostname={this.props.hostname} 
-          city={this.props.city} 
-          region={this.props.region} 
-          country={this.props.country}
-          neighbName={this.props.neighbName} 
-          neighbDescriptors={this.props.neighbDescriptors} 
-          description={this.props.neighbDesc}
-        />
-        <GettingAround description={this.props.gettingAround}/>
-      </div>
-    )
-  }
+const DescriptionSection = (props) => {
+  return (
+    <div id="descriptions-container">
+      <DescribeNeighborhood 
+        hostname={props.hostname} 
+        city={props.city} 
+        region={props.region} 
+        country={props.country}
+        neighbName={props.neighbName} 
+        neighbDescriptors={props.neighbDescriptors} 
+        description={props.neighbDesc}
+      />
+      <GettingAround description={props.gettingAround}/>
+    </div>
+  ) 
 }
 
 export default DescriptionSection;

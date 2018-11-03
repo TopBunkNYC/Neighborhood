@@ -8,7 +8,6 @@ const GettingAround = (props) => {
         {props.description}
       </div>
     </React.Fragment>
-
   )
 }
 
