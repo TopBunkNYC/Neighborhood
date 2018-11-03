@@ -55,13 +55,14 @@ export default class Neighborhood extends React.Component {
         id: neighbId
       }})
       .then(({data}) => {
+        let neighborhood = data[0];
         this.setState({
-          neighbName: data[0].neighbName,
-          neighbDescriptors: [data[0].feature1, data[0].feature2, data[0].feature3, 
-            data[0].feature4, data[0].feature5, data[0].feature6, data[0].feature7],
-          city: data[0].cityString,
-          region: data[0].regionString,
-          country: data[0].country
+          neighbName: neighborhood.neighbName,
+          neighbDescriptors: [neighborhood.feature1, neighborhood.feature2, neighborhood.feature3, 
+            neighborhood.feature4, neighborhood.feature5, neighborhood.feature6, neighborhood.feature7],
+          city: neighborhood.cityString,
+          region: neighborhood.regionString,
+          country: neighborhood.country
         })
       })
     })
