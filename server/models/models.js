@@ -113,10 +113,6 @@ const getNeighbData = (id) => {
 const calcNearestLandmarks = async (lat, long) => {
   return await Landmark.findAll()
   .then((landmarks) => {
-    // latLong = JSON.parse(JSON.stringify(latLong));
-    console.log('LAT AND LONG LOOK LIKE', lat, long);
-    console.log('LAT AND LONG ARE TYPES', typeof lat, typeof long);
-
     return Promise.all(landmarks.map((landmark) => {
       // from the current listing
       let from = turf.point([long, lat]);

@@ -51,7 +51,6 @@ let createPoints = async () => {
   
     landmarksData.push(landmark);
   }
-  console.log('landmarks data in generate script looks like', landmarksData)
   return landmarksData;
 }
 
