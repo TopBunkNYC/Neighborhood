@@ -1,3 +1,3 @@
-import Neighborhood from './components/neighb-index.jsx';
+import Neighborhood from './components/Index.jsx';
 
 window.Neighborhood = Neighborhood;
