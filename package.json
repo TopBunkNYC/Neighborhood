@@ -8,6 +8,7 @@
     "start": "node ./server/server.js",
     "seed": "node ./server/models/loadData.js",
     "react-dev": "webpack -d --watch",
+    "react-prod": "webpack -p",
     "start-dev": "nodemon ./server/server.js",
     "test": "jest",
     "connect": "ssh -i \"neighborhood-ec2-keypair.pem\" ubuntu@ec2-3-16-89-66.us-east-2.compute.amazonaws.com",
