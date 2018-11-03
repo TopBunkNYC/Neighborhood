@@ -1,7 +1,7 @@
 import React from 'react';
-import DescriptionSections from './desc-sections.jsx';
-import Landmarks from './landmarks.jsx'
-import Map from './map.jsx'
+import DescriptionSections from './DescriptionSection.jsx';
+import Landmarks from './Landmarks.jsx'
+import Map from './Map.jsx'
 import axios from 'axios';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import DescribeNeighborhood from './desc-neighb.jsx';
-import GettingAround from './desc-getting-around.jsx';
+import DescribeNeighborhood from './DescribeNeighborhood.jsx';
+import GettingAround from './GettingAround.jsx';
 
 class DescriptionSection extends React.Component {
   constructor(props) {
