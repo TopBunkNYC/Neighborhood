@@ -19,11 +19,13 @@ var points = randomPointsOnPolygon(numberOfPoints, polygon);
 
 let listingsCoords = [];
 
+
 for (let i = 0; i < points.length; i++) {
   // reverse order to lat-long instead long-lat
   let latLong = [points[i].geometry.coordinates[1], points[i].geometry.coordinates[0]]
   listingsCoords.push(latLong)
 }
+
 
 ////// Add the points onto the listingsData from Mockaroo //////
 
@@ -34,5 +36,22 @@ listingsData.forEach((listing, index) => {
   listing.listingLong = listingsCoords[index][1];
 })
 
+let newListingsData = [];
 
-exports.listingsData = listingsData;
+let counter = 0;
+for (let j = 0; j < 100000; j++) {
+	// var arr = [];
+	// for (let i = 0; i < 1000; i++) {
+		let listing = listingsData[Math.floor(Math.random() * 100)];
+		listing.listingLat = listingsCoords[Math.floor(Math.random() * 100)][0];
+		listing.listingLong = listingsCoords[Math.floor(Math.random() * 100)][1];
+		listing.listingId = counter++ + "";
+		// arr.push(listing);
+	// }	
+	newListingsData.push(listing)
+}
+
+
+
+
+exports.listingsData = newListingsData;

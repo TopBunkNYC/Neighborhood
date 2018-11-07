@@ -10,9 +10,13 @@ const listings = generatedListings.listingsData;
 const neighbs = require('./dummyData/neighbsData.js').neighbsArray;
 const landmarks = generatedLandmarks.landmarksData;
 
+
+
 Listing.sync({force: true})
 .then(() => {
-  Listing.bulkCreate(listings)
+	listings.forEach(listing => {
+		setTimeout(() => Listing.create(listing), 50)
+	})
 })
 .catch((err) => {
   console.error(err);
