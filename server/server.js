@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 const parser = require('body-parser')
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5001;
 
 const router = require('./routes/router')
 
@@ -13,6 +13,9 @@ const db = require('../database/index')
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(parser.json());
+app.use(parser.urlencoded({
+  extended: true
+}));
 app.use('/', router);
 
 app.listen(port, () => {

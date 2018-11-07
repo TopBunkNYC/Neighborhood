@@ -13,6 +13,39 @@ module.exports = {
     })
   }, 
 
+	postListingData: (req, res) => { 
+		models.postListingData(req.body)
+    .then(() => {
+      res.send();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+	}, 
+	
+	updateListingData: (req, res) => { 
+		models.updateListingData(req.body)
+    .then(() => {
+      res.send('update success');
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+	}, 
+	
+	deleteListingData: (req, res) => { 
+		console.log(req.body)
+		models.deleteListingData(req.body.id)
+    .then(() => {
+      res.send("delete success");
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }, 
+
+
+
   getNeighbData: (req, res) => {
     models.getNeighbData(req.query.id)
     .then((neighborhood) => {

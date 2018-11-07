@@ -1,10 +1,10 @@
-const db = require('../../database/index');
-const Sequelize = require('sequelize');
-const turf = require('@turf/turf');
-const distance = require('@turf/distance');
+const db = require("../../database/index");
+const Sequelize = require("sequelize");
+const turf = require("@turf/turf");
+const distance = require("@turf/distance");
 
 // Define Listing schema
-const Listing = db.define('listing', {
+const Listing = db.define("listing", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,7 +18,7 @@ const Listing = db.define('listing', {
   },
   neighbId: {
     type: Sequelize.INTEGER
-  }, 
+  },
   listingLat: {
     type: Sequelize.FLOAT
   },
@@ -31,17 +31,17 @@ const Listing = db.define('listing', {
   gettingAroundDesc: {
     type: Sequelize.STRING(2500)
   }
-})
+});
 
 // Define Neighborhood schema
-const Neighborhood = db.define('neighborhood', {
+const Neighborhood = db.define("neighborhood", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true
   },
   cityString: {
     type: Sequelize.STRING(100)
-  }, 
+  },
   regionString: {
     type: Sequelize.STRING(100)
   },
@@ -72,10 +72,10 @@ const Neighborhood = db.define('neighborhood', {
   feature7: {
     type: Sequelize.STRING(50)
   }
-})
+});
 
 // Define Landmarks schema
-const Landmark = db.define('landmark', {
+const Landmark = db.define("landmark", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true
@@ -96,46 +96,77 @@ const Landmark = db.define('landmark', {
 
 //////// DATABASE METHODS ////////////
 
-const getListingData = (id) => {
+const getListingData = id => {
   return Listing.findAll({
     where: {
-      listingId: id
+      id: id
     }
-  })
-}
+  });
+};
 
-const getNeighbData = (id) => {
+const postListingData = data => {
+  return Listing.create(data).then(() => {
+    console.log("post success");
+  });
+};
+
+const updateListingData = data => {
+  return Listing.findOne({
+    where: {
+      id: data.id
+    }
+  }).then(listing => {
+    listing.updateAttributes({
+      neighbDesc: data.neighbDesc
+    });
+  });
+};
+
+const deleteListingData = id => {
+  return Listing.destroy({
+    where: { id: id }
+  }).then(success => {
+    console.log(success);
+  });
+};
+
+const getNeighbData = id => {
   return Neighborhood.findAll({
-    where: {id}
-  })
-}
+    where: { id }
+  });
+};
 
 const calcNearestLandmarks = async (lat, long) => {
-  return await Landmark.findAll()
-  .then((landmarks) => {
-    return Promise.all(landmarks.map((landmark) => {
-      // from the current listing
-      let from = turf.point([long, lat]);
-      // to this landmark
-      let to = turf.point([landmark.landmarkLong, landmark.landmarkLat]);
-      let options = {units: 'miles'};
+  return await Landmark.findAll().then(landmarks => {
+    return Promise.all(
+      landmarks.map(landmark => {
+        // from the current listing
+        let from = turf.point([long, lat]);
+        // to this landmark
+        let to = turf.point([landmark.landmarkLong, landmark.landmarkLat]);
+        let options = { units: "miles" };
 
-      return Landmark.update(
-        {distance: turf.distance(from, to, options)},
-        {where: {id: landmark.id}}
-      )
-    }))
-  })
-}
+        return Landmark.update(
+          { distance: turf.distance(from, to, options) },
+          { where: { id: landmark.id } }
+        );
+      })
+    );
+  });
+};
 
 const getLandmarkData = () => {
   return Landmark.findAll({
-    order: Sequelize.literal('distance ASC'),
+    order: Sequelize.literal("distance ASC"),
     limit: 5
-  })
-}
+  });
+};
 
 exports.getListingData = getListingData;
+exports.postListingData = postListingData;
+exports.updateListingData = updateListingData;
+exports.deleteListingData = deleteListingData;
+
 exports.getNeighbData = getNeighbData;
 exports.calcNearestLandmarks = calcNearestLandmarks;
 exports.getLandmarkData = getLandmarkData;
@@ -143,4 +174,3 @@ exports.getLandmarkData = getLandmarkData;
 exports.listingSchema = Listing;
 exports.neighborhoodSchema = Neighborhood;
 exports.landmarkSchema = Landmark;
-
