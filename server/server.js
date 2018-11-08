@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 const parser = require('body-parser')
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5001;
 
 const router = require('./routes/router')
 

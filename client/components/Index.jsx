@@ -107,7 +107,7 @@ export default class Neighborhood extends React.Component {
           
           <hr/>
           <Landmarks nearbyLandmarks={this.state.nearbyLandmarks}/>
-          <Map lat={this.state.listingLat} long={this.state.listingLong}/>
+          <img src="https://kottke.org/plus/misc/images/lotr-google-maps.jpg"/>
           <hr/>
         </div>
       )

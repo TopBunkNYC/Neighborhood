@@ -1,23 +1,16 @@
 const Sequelize = require('sequelize');
-const pg = require('pg');
-const hstore = require('pg-hstore');
-const dbpw = require('../config.js').AmazonDBpw;
+const password = require('../config.js').DB_PASSWORD;
 
-const db = new Sequelize('Neighborhood', 'neighborhood', dbpw, 
-  {
-    host: 'neighborhood-staybnb.cksae9ebsoyz.us-east-2.rds.amazonaws.com',
-    port: 5432,
-    dialect: 'postgres',
-    operatorsAliases: false,
+const db  = new Sequelize('neighborhood', 'kai', password, {
+	dialect: 'postgres',
+	pool: {
+		max: 30,
+		min: 0,
+		idle: 10000000,
+		acquire: 10000000
+	}		
+});
 
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
-  } 
-)
 
 db.authenticate()
   .then(() => {
