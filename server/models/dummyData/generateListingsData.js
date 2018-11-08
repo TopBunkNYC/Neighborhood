@@ -21,11 +21,13 @@ var points = randomPointsOnPolygon(numberOfPoints, polygon);
 
 let listingsCoords = [];
 
+
 for (let i = 0; i < points.length; i++) {
   // reverse order to lat-long instead long-lat
   let latLong = [points[i].geometry.coordinates[1], points[i].geometry.coordinates[0]]
   listingsCoords.push(latLong)
 }
+
 
 ////// Add the points onto the listingsData from Mockaroo //////
 

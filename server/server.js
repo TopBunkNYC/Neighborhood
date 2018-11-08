@@ -13,6 +13,9 @@ const db = require('../database/index')
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(parser.json());
+app.use(parser.urlencoded({
+  extended: true
+}));
 app.use('/', router);
 
 app.listen(port, () => {

@@ -12,6 +12,7 @@ const landmarks = generatedLandmarks.landmarksData;
 
 
 
+<<<<<<< HEAD
 
 
 Listing.sync({force: false})
@@ -21,6 +22,12 @@ Listing.sync({force: false})
 		setTimeout(() => {
 			Listing.bulkCreate(listing)
 		}, 500)
+=======
+Listing.sync({force: true})
+.then(() => {
+	listings.forEach(listing => {
+		setTimeout(() => Listing.create(listing), 50)
+>>>>>>> 48833cd813f97d07e21603f62aac977276585d96
 	})
 })
 .catch((err) => {
