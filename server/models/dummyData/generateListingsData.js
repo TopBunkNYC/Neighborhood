@@ -3,6 +3,8 @@
 
 const randomPointsOnPolygon = require('random-points-on-polygon');
 const turf = require('turf');
+const faker = require('faker');
+
 
 var polygon = turf.polygon([[
   [-.2451, 51.5194], [-.1960, 51.5485],
@@ -27,12 +29,21 @@ for (let i = 0; i < points.length; i++) {
 
 ////// Add the points onto the listingsData from Mockaroo //////
 
-let listingsData = require('./listingsData_no_coords').listingsArray;
+let newListingsData = [];
+for (let j = 0; j < 1000; j++) {
+	var arr = [];
+	for (let i = 0; i < 1000; i++) {
+		let listing = {};
+		listing.hostFirstName = faker.name.findName();
+		listing.listingLat = listingsCoords[Math.floor(Math.random() * 100)][0];
+		listing.listingLong = listingsCoords[Math.floor(Math.random() * 100)][1];
+		listing.neighbId = Math.ceil(Math.random() * 15);
+		listing.neighbDesc = faker.lorem.paragraph();
+		listing.gettingAroundDesc = faker.lorem.paragraph();
+		arr.push(listing)
+	}
+	newListingsData.push(arr);
+	console.log(j);
+}
 
-listingsData.forEach((listing, index) => {
-  listing.listingLat = listingsCoords[index][0];
-  listing.listingLong = listingsCoords[index][1];
-})
-
-
-exports.listingsData = listingsData;
+exports.listingsData = newListingsData;

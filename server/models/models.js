@@ -10,9 +10,6 @@ const Listing = db.define('listing', {
     primaryKey: true,
     autoIncrement: true
   },
-  listingId: {
-    type: Sequelize.INTEGER
-  },
   hostFirstName: {
     type: Sequelize.STRING(50)
   },
@@ -99,7 +96,7 @@ const Landmark = db.define('landmark', {
 const getListingData = (id) => {
   return Listing.findAll({
     where: {
-      listingId: id
+      id: id
     }
   })
 }

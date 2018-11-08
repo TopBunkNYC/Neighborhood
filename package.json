@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "node ./server/server.js",
-    "seed": "node ./server/models/loadData.js",
+    "seed": "node --max-old-space-size=6148 ./server/models/loadData.js",
     "react-dev": "webpack -d --watch",
     "react-prod": "webpack -p",
     "start-dev": "nodemon ./server/server.js",
@@ -15,13 +15,14 @@
     "start-pm2": "pm2 start ./server/server.js",
     "list-pm2": "pm2 list",
     "show-server-pm2": "pm2 show server",
-    "stop-pm2": "pm2 stop 0"
+    "stop-pm2": "pm2 stop 0",
+    "seed-all": "npm-run-series seed seed seed seed seed seed seed seed seed seed"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Staybnb/Neighborhood.git"
   },
-  "author": "David Weinzimmer",
+  "author": "Kai Chen",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Staybnb/Neighborhood/issues"
@@ -30,6 +31,7 @@
   "devDependencies": {
     "jest": "^22.3.0",
     "morgan": "^1.9.0",
+    "parallelshell": "^3.0.1",
     "puppeteer": "^1.9.0",
     "random-points-on-polygon": "0.0.4",
     "turf": "^3.0.14"
@@ -45,10 +47,16 @@
     "babel-preset-react": "^6.24.1",
     "bluebird": "^3.5.2",
     "body-parser": "^1.18.3",
+    "db-streamer": "^1.2.1",
     "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "lorem-ipsum": "^1.0.6",
+    "npm-run-series": "^1.0.1",
     "path": "^0.12.7",
-    "pg": "^7.5.0",
+    "pg": "^7.6.1",
+    "pg-copy-streams": "^1.2.0",
     "pg-hstore": "^2.3.2",
+    "pg-query-stream": "^1.1.2",
     "pm2": "^3.2.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
