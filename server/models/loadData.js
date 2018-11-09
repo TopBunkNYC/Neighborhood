@@ -17,8 +17,6 @@ Listing.sync({force: false})
 		setTimeout(() => {
 			Listing.bulkCreate(listing)
 		}, 500)
-	})
-})
 .catch((err) => {
   console.error(err);
 })
