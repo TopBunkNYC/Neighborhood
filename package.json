@@ -16,7 +16,7 @@
     "list-pm2": "pm2 list",
     "show-server-pm2": "pm2 show server",
     "stop-pm2": "pm2 stop 0",
-    "seed-all": "npm-run-series seed seed seed seed seed seed seed seed seed seed"
+    "seed-all": "npm run seed && npm run seed  && npm run seed  && npm run seed  && npm run seed  && npm run seed  && npm run seed  && npm run seed  && npm run seed  && npm run seed  && npm run seed  && npm run seed"
   },
   "repository": {
     "type": "git",
@@ -61,6 +61,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-google-maps": "^9.4.5",
+    "redis": "^2.8.0",
     "sequelize": "^4.41.0",
     "webpack": "^3.11.0",
     "webpack-cli": "^3.1.2"

@@ -27,7 +27,7 @@ export default class Neighborhood extends React.Component {
 
   componentDidMount() {
     let queryString = window.location.search;
-    let listingId = (queryString.slice(-3) * 1)
+    let listingId = (queryString.slice(-8) * 1)
     this.setState({listingId: listingId})
 
     // Get listing data
