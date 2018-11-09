@@ -4,17 +4,12 @@ const generatedLandmarks = require('./dummyData/generateLandmarksData.js');
 const Listing = models.listingSchema;
 const Neighborhood = models.neighborhoodSchema;
 const Landmark = models.landmarkSchema;
-
 // Import arrays of data
 const listings = generatedListings.listingsData;
 const neighbs = require('./dummyData/neighbsData.js').neighbsArray;
 const landmarks = generatedLandmarks.landmarksData;
 
-
-
-<<<<<<< HEAD
-
-
+//Postgres will change
 Listing.sync({force: false})
 .then(() => {
 	console.log('start')
@@ -22,7 +17,6 @@ Listing.sync({force: false})
 		setTimeout(() => {
 			Listing.bulkCreate(listing)
 		}, 500)
-
 .catch((err) => {
   console.error(err);
 })
