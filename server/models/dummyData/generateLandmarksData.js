@@ -54,6 +54,6 @@ let createPoints = async () => {
   return landmarksData;
 }
 
-exports.landmarksData = createPoints()
+exports.landmarksData = createPoints().then(data => data)
 
 

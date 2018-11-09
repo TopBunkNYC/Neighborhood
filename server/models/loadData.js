@@ -10,16 +10,7 @@ const neighbs = require('./dummyData/neighbsData.js').neighbsArray;
 const landmarks = generatedLandmarks.landmarksData;
 
 //Postgres will change
-Listing.sync({force: false})
-.then(() => {
-	console.log('start')
-	listings.forEach(listing => {
-		setTimeout(() => {
-			Listing.bulkCreate(listing)
-		}, 500)
-.catch((err) => {
-  console.error(err);
-})
+
 
 Neighborhood.sync({force: true})
 .then(() => {
@@ -38,4 +29,3 @@ landmarks.then((results) => {
     console.error(err);
   })
 })
-

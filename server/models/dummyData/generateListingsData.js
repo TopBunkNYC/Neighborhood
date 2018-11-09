@@ -4,9 +4,14 @@
 const randomPointsOnPolygon = require("random-points-on-polygon");
 const turf = require("turf");
 const faker = require("faker");
-const neighbs = require('./neighbsData.js').neighbsArray;
-const generatedLandmarks = require('./generateLandmarksData.js');
+const neighbs = require("./neighbsData.js").neighbsArray;
+const generatedLandmarks = require("./generateLandmarksData.js");
 const landmarks = generatedLandmarks.landmarksData;
+const client = require("../../../database-redis/index.js");
+const models = require("../models.js");
+const Listing = models.listingSchema;
+const Neighborhood = models.neighborhoodSchema;
+const Landmark = models.landmarkSchema;
 
 
 var polygon = turf.polygon([
@@ -41,67 +46,85 @@ for (let i = 0; i < points.length; i++) {
   listingsCoords.push(latLong);
 }
 
-const client = require("../../../database-redis/index.js");
-
-
 // Redis data load
+// (async () => {
+//   for (var i = 0; i < 10000; i++) {
+//     await new Promise((resolve, reject) => {
+//       client.rpush(
+//         [
+//           "listings",
+//           JSON.stringify({
+//             hostFirstName: faker.name.findName(),
+//             listingLat: listingsCoords[Math.floor(Math.random() * 100)][0],
+//             listingLong: listingsCoords[Math.floor(Math.random() * 100)][1],
+//             neighbId: Math.ceil(Math.random() * 15),
+//             neighbDesc: faker.lorem.paragraph(),
+//             gettingAroundDesc: faker.lorem.paragraph()
+//           })
+//         ],
+//         function(err, reply) {
+//           resolve(reply);
+//         }
+//       );
+//     });
+//   }
+// })();
+
+// (async () => {
+//   for (let neighb of neighbs) {
+//     await new Promise((resolve, reject) => {
+//       client.rpush(["neighbs", JSON.stringify(neighb)], function(err, reply) {
+//         resolve(reply);
+//       });
+//     });
+//   }
+// })();
+
+// (async () => {
+//   for (let landmark of landmarks) {
+//     await new Promise((resolve, reject) => {
+//       client.rpush(["neighbs", JSON.stringify(landmark)], function(err, reply) {
+//         resolve(reply);
+//       });
+//     });
+//   }
+// })();
+
+//Postgres data load
 (async () => {
-	for (var i = 0; i < 10000; i++) {
-		await new Promise ((resolve, reject) => {
-			client.rpush(["listings", JSON.stringify({
-				hostFirstName: faker.name.findName(),
-				listingLat: listingsCoords[Math.floor(Math.random() * 100)][0],
-				listingLong: listingsCoords[Math.floor(Math.random() * 100)][1],
-				neighbId: Math.ceil(Math.random() * 15),
-				neighbDesc: faker.lorem.paragraph(),
-				gettingAroundDesc: faker.lorem.paragraph()
-			})], function(err, reply) {
-				resolve(reply); // 3
-			});		
-		})
-	}
+  for (var i = 0; i < 10000; i++) {
+		await new Promise((resolve, reject) => {
+      let arr = [];
+      for (var j = 0; j < 1000; j++) {
+        arr.push({
+          hostFirstName: faker.name.findName(),
+          listingLat: listingsCoords[Math.floor(Math.random() * 100)][0],
+          listingLong: listingsCoords[Math.floor(Math.random() * 100)][1],
+          neighbId: Math.ceil(Math.random() * 15),
+          neighbDesc: faker.lorem.paragraph(),
+          gettingAroundDesc: faker.lorem.paragraph()
+        });
+      }
+      resolve(arr);
+    }).then(async (listings) => {
+      await Listing.bulkCreate(listings);
+    });
+  }
 })();
 
-(async () => {
-	console.log(neighbs)
-	for (let neighb of neighbs) {
-		await new Promise ((resolve, reject) => {
-			client.rpush(["neighbs", JSON.stringify(neighb)], function(err, reply) {
-				resolve(reply); // 3
-			});		
-		})
-	}
-})();
-
-landmarks.then(async (landmarks) => {
-	for (let landmark of landmarks) {
-		await new Promise ((resolve, reject) => {
-			client.rpush(["landmarks", JSON.stringify(landmark)], function(err, reply) {
-				resolve(reply); // 3
-			});		
-		})
-	}
+Neighborhood.sync({force: true})
+.then(() => {
+  Neighborhood.bulkCreate(neighbs)
+})
+.catch((err) => {
+  console.error(err);
 })
 
+Landmark.sync({force: true})
+.then(() => {
+	Landmark.bulkCreate(landmarks)
+})
+.catch((err) => {
+	console.error(err);
+})
 
-
-//Postgres data generation (will change)
-let newListingsData = [];
-for (let j = 0; j < 1000; j++) {
-	var arr = [];
-	for (let i = 0; i < 1000; i++) {
-		let listing = {};
-		listing.hostFirstName = faker.name.findName();
-		listing.listingLat = listingsCoords[Math.floor(Math.random() * 100)][0];
-		listing.listingLong = listingsCoords[Math.floor(Math.random() * 100)][1];
-		listing.neighbId = Math.ceil(Math.random() * 15);
-		listing.neighbDesc = faker.lorem.paragraph();
-		listing.gettingAroundDesc = faker.lorem.paragraph();
-		arr.push(listing)
-	}
-	newListingsData.push(arr);
-	console.log(j);
-}
-
-
-exports.listingsData = newListingsData;
