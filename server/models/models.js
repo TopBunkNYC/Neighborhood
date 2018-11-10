@@ -1,7 +1,6 @@
 const db = require("../../database/index");
 const Sequelize = require("sequelize");
 const turf = require("@turf/turf");
-const distance = require("@turf/distance");
 
 // Define Listing schema
 const Listing = db.define("listing", {
