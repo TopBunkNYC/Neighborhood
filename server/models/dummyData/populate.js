@@ -15,7 +15,6 @@ const turf = require("turf");
 
 var t0 = performance.now();
 
-
 var polygon = turf.polygon([
   [
     [-0.2451, 51.5194],

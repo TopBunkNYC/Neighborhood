@@ -1,12 +1,11 @@
-//////////////Generate Listings///////////////
+////////////Generate Listings///////////////
 const randomPointsOnPolygon = require("random-points-on-polygon");
 const turf = require("turf");
 const faker = require("faker");
 const fs = require("fs");
 const Json2csvParser = require("json2csv").Parser;
-const {performance} = require('perf_hooks');
-const stream = fs.createWriteStream('data.csv');
-
+const { performance } = require("perf_hooks");
+const stream = fs.createWriteStream("data.csv");
 
 var t0 = performance.now();
 var prev = t0;
@@ -59,10 +58,10 @@ var opts = { fields: fields, header: false };
 const json2csvParser = new Json2csvParser(opts);
 
 (async () => {
-  for (var i = 0; i < 10000; i++) {
+  for (var i = 0; i < 1000; i++) {
     await new Promise((resolve, reject) => {
       let arr = [];
-      for (var j = 0; j < 1000; j++) {
+      for (var j = 0; j < 10000; j++) {
         arr.push({
           hostFirstName: faker.name.findName(),
           listingLat: listingsCoords[Math.floor(Math.random() * 100)][0],
@@ -76,18 +75,22 @@ const json2csvParser = new Json2csvParser(opts);
       }
       resolve(arr);
     }).then(async listings => {
-      await new Promise((res, rej) => {
-        let csv = json2csvParser.parse(listings);
-				stream.write(csv + "\n");
-				console.log("Load " + i +  " took " + (performance.now() - prev) / 1000 + " seconds.")
-				prev = performance.now()
-				res()
-      });
+      let csv = json2csvParser.parse(listings);
+      await stream.write(csv + "\n");
+      console.log(
+        "Load " + i + " took " + (performance.now() - prev) / 1000 + " seconds."
+      );
+      prev = performance.now();
     });
-	}
-	stream.end();
-	var t1 = performance.now();
-	console.log("Generation took " + (t1 - t0) / 1000 + " seconds.")
-}
-)();
+  }
+  stream.end();
+  var t1 = performance.now();
+  console.log("Generation took " + (t1 - t0) / 1000 + " seconds.");
+})();
+
+//Initialize listings table
+
+const models = require("../models.js");
+const Listing = models.listingSchema;
+Listing.sync({ force: true });
 
