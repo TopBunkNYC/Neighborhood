@@ -10,7 +10,7 @@ router.delete('/listingdata', controller.deleteListingData)
 router.get('/neighborhooddata', controller.getNeighbData)
 router.get('/landmarkdata', controller.getLandmarkData)
 router.get('/app.js', (req, res) => {
-  res.redirect('https://s3.us-east-2.amazonaws.com/staybnb-neighborhood/app.js');
+  res.redirect('../../public/app.js');
 })
 router.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/index.html'));

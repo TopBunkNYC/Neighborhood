@@ -9,24 +9,27 @@ const Listing = db.define("listing", {
     primaryKey: true,
     autoIncrement: true
   },
-  hostFirstName: {
+  hostfirstname: {
     type: Sequelize.STRING(50)
   },
-  neighbId: {
+  neighbid: {
     type: Sequelize.INTEGER
   },
-  listingLat: {
+  listinglat: {
     type: Sequelize.FLOAT
   },
-  listingLong: {
+  listinglong: {
     type: Sequelize.FLOAT
   },
-  neighbDesc: {
+  neighbdesc: {
     type: Sequelize.STRING(2500)
   },
-  gettingAroundDesc: {
+  gettingarounddesc: {
     type: Sequelize.STRING(2500)
   }
+},
+{
+	timestamps: false
 });
 
 // Define Neighborhood schema
@@ -170,3 +173,4 @@ exports.getLandmarkData = getLandmarkData;
 exports.listingSchema = Listing;
 exports.neighborhoodSchema = Neighborhood;
 exports.landmarkSchema = Landmark;
+

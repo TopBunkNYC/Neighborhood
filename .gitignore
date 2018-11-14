@@ -9,7 +9,7 @@ npm
 npm-debug.log
 node_modules/
 
-*.csv
+server/models/dummyData/data.csv
 pids
 *.pid
 logs

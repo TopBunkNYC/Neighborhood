@@ -75,7 +75,7 @@ for (let i = 0; i < points.length; i++) {
 
 // Postgres Listings load
 db.query(
-  `COPY listings ("hostFirstName","listingLat","listingLong","neighbId","neighbDesc","gettingAroundDesc","createdAt","updatedAt") FROM '/Users/work/Desktop/sdc/Neighborhood/server/models/dummyData/data.csv' DELIMITER ',' CSV HEADER;`,
+  `COPY listings ("hostfirstname","listinglat","listinglong","neighbid","neighbdesc","gettingarounddesc") FROM '/Users/work/Desktop/sdc/Neighborhood/server/models/dummyData/data.csv' DELIMITER ',' CSV HEADER;`,
   { model: Listing }
 ).then(projects => {
   console.log("success");
@@ -106,6 +106,7 @@ landmarks.then(results => {
           err,
           reply
         ) {
+					if (err) console.log(err)
           console.log(reply);
         });
       });

@@ -48,9 +48,7 @@ const fields = [
   "listingLong",
   "neighbId",
   "neighbDesc",
-  "gettingAroundDesc",
-  "createdAt",
-  "updatedAt"
+  "gettingAroundDesc"
 ];
 
 var opts = { fields: fields, header: false };
@@ -68,18 +66,21 @@ const json2csvParser = new Json2csvParser(opts);
           listingLong: listingsCoords[Math.floor(Math.random() * 100)][1],
           neighbId: Math.ceil(Math.random() * 15),
           neighbDesc: faker.lorem.paragraph(),
-          gettingAroundDesc: faker.lorem.paragraph(),
-          createdAt: new Date(),
-          updatedAt: new Date()
+          gettingAroundDesc: faker.lorem.paragraph()
         });
       }
       resolve(arr);
     }).then(async listings => {
       let csv = json2csvParser.parse(listings);
       await stream.write(csv + "\n");
-      console.log(
-        "Load " + i + " took " + (performance.now() - prev) / 1000 + " seconds."
-      );
+      if (i % 100 === 0)
+        console.log(
+          "Load " +
+            i +
+            " took " +
+            (performance.now() - prev) / 1000 +
+            " seconds."
+        );
       prev = performance.now();
     });
   }
@@ -89,8 +90,6 @@ const json2csvParser = new Json2csvParser(opts);
 })();
 
 //Initialize listings table
-
 const models = require("../models.js");
 const Listing = models.listingSchema;
 Listing.sync({ force: true });
-

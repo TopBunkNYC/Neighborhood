@@ -38,12 +38,12 @@ export default class Neighborhood extends React.Component {
     .then(({data}) => {
       this.setState({
         listingId,
-        hostFirstName: data[0].hostFirstName,
-        hostNeighbDesc: data[0].neighbDesc,
-        hostGettingAroundDesc: data[0].gettingAroundDesc,
-        listingLat: data[0].listingLat,
-        listingLong: data[0].listingLong,
-        neighborhoodId: data[0].neighbId
+        hostFirstName: data[0].hostfirstname,
+        hostNeighbDesc: data[0].neighbdesc,
+        hostGettingAroundDesc: data[0].gettingarounddesc,
+        listingLat: data[0].listinglat,
+        listingLong: data[0].listinglong,
+        neighborhoodId: data[0].neighbid
       })
     })
     .catch((err) => {console.error(err)})
