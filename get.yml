@@ -1,0 +1,11 @@
+config:
+  target: 'http://localhost:5001'
+  processor: "./function.js"
+  phases:
+    - duration: 60
+      arrivalRate: 100
+scenarios:
+  - flow:
+    - function: "getId"
+    - get:
+        url: "/listingdata?{{id}}"

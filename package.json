@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack",
     "start": "node ./server/server.js",
-		"seed": "node ./server/models/dummyData/populate.js",
-		"load": "node ./server/models/dummyData/listingGeneration.js",
+    "seed": "node ./server/models/dummyData/populate.js",
+    "load": "node ./server/models/dummyData/listingGeneration.js",
     "react-dev": "webpack -d --watch",
     "react-prod": "webpack -p",
     "start-dev": "nodemon ./server/server.js",
@@ -54,6 +54,7 @@
     "json2csv": "^4.3.0",
     "jsonexport": "^2.3.0",
     "lorem-ipsum": "^1.0.6",
+    "newrelic": "^4.11.0",
     "npm-run-series": "^1.0.1",
     "path": "^0.12.7",
     "pg": "^7.6.1",
