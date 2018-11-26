@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '../../node_modules/react/umd/react.production.min.js';
 import DescribeNeighborhood from './DescribeNeighborhood.jsx';
 import GettingAround from './GettingAround.jsx';
 

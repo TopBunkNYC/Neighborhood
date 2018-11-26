@@ -94,7 +94,7 @@ const Landmark = db.define("landmark", {
 });
 
 //////// DATABASE METHODS ////////////
-
+Listing.sync({force: false})
 const getListingData = id => {
   return Listing.findAll({
     where: {

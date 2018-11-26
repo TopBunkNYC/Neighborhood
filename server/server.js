@@ -1,15 +1,16 @@
-require('newrelic');
-const express = require('express');
-const morgan = require('morgan');
-const path = require('path');
-const parser = require('body-parser')
-const app = express();
-const port = process.env.PORT || 5001;
+// require('newrelic');
+// import from "newrelic"
+import express from 'express';
+import morgan from 'morgan';
+import path from 'path';
+import parser from 'body-parser'
+let port = process.env.PORT || 5001;
 
-const router = require('./routes/router')
+import router from './routes/router';
 
 // require db, which will initialize it even if `db` is not used anywhere else
-const db = require('../database/index')
+import db from '../database/index';
+let app = express();
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../public')));

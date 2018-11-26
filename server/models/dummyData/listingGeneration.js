@@ -56,10 +56,10 @@ var opts = { fields: fields, header: false };
 const json2csvParser = new Json2csvParser(opts);
 
 (async () => {
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 100; i++) {
     await new Promise((resolve, reject) => {
       let arr = [];
-      for (var j = 0; j < 10000; j++) {
+      for (var j = 0; j < 100; j++) {
         arr.push({
           hostFirstName: faker.name.findName(),
           listingLat: listingsCoords[Math.floor(Math.random() * 100)][0],

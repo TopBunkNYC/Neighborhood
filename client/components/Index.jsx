@@ -1,7 +1,7 @@
-import React from 'react';
+import React from '../../node_modules/react/umd/react.production.min.js';
 import DescriptionSections from './DescriptionSection.jsx';
 import Landmarks from './Landmarks.jsx'
-import Map from './Map.jsx'
+// import Map from './Map.jsx'
 import axios from 'axios';
 
 
@@ -27,7 +27,7 @@ export default class Neighborhood extends React.Component {
 
   componentDidMount() {
     let queryString = window.location.search;
-    let listingId = (queryString.slice(-8) * 1)
+		let listingId = (queryString.slice(4) * 1)
     this.setState({listingId: listingId})
 
     // Get listing data

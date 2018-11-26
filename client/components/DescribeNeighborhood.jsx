@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '../../node_modules/react/umd/react.production.min.js';
 
 const DescribeNeighborhood = (props) => {
   const prefix = 'https://www.airbnb.com/s/';

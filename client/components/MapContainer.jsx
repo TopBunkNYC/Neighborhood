@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '../../node_modules/react/umd/react.production.min.js';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, Circle } from "react-google-maps"
 
 const MapContainer = withScriptjs(withGoogleMap((props) =>

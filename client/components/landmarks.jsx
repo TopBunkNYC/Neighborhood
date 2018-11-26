@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '../../node_modules/react/umd/react.production.min.js';
 
 class Landmarks extends React.Component {
   constructor(props) {

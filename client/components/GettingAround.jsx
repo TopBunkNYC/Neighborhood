@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '../../node_modules/react/umd/react.production.min.js';
 
 const GettingAround = (props) => {
   return (
