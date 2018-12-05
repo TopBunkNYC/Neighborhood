@@ -1,7 +1,6 @@
 import React from '../../node_modules/react/umd/react.production.min.js';
 import DescriptionSections from './DescriptionSection.jsx';
 import Landmarks from './Landmarks.jsx'
-// import Map from './Map.jsx'
 import axios from 'axios';
 
 
@@ -10,25 +9,25 @@ export default class Neighborhood extends React.Component {
     super(props);
     this.state = {
       dataLoaded: false,
-      listingId: null,
-      hostFirstName: null, 
-      hostNeighbDesc: null,
-      hostGettingAroundDesc: null,
-      listingLocation: null,
-      neighborhoodId: null,
-      neighbName: null,
-      neighbDescriptors: null,
-      city: null, 
-      region: null,
-      country: null,
-      nearbyLandmarks: []
+      listingId: this.props.listingId || null,
+      hostFirstName: this.props.hostfirstname || null, 
+      hostNeighbDesc: this.props.hostNeighbDesc || null,
+      hostGettingAroundDesc: this.props.hostGettingAroundDesc || null,
+      listingLocation: this.props.listingLocation || null,
+      neighborhoodId: this.props.neighborhoodId || null,
+      neighbName: this.props.neighbName || null,
+      neighbDescriptors: this.props.neighbDescriptors || null,
+      city: this.prop.city || null, 
+      region: this.props.region || null,
+      country: this.props.country || null,
+      nearbyLandmarks: this.props.nearbyLandmarks || []
     }
   }
 
   componentDidMount() {
     let queryString = window.location.search;
-		let listingId = (queryString.slice(4) * 1)
-    this.setState({listingId: listingId})
+		let listingId = (queryString.slice(4) * 1);
+    this.setState({listingId: listingId});
 
     // Get listing data
     axios.get(`/listingdata`, { params: 
@@ -107,7 +106,7 @@ export default class Neighborhood extends React.Component {
           
           <hr/>
           <Landmarks nearbyLandmarks={this.state.nearbyLandmarks}/>
-          <img src="https://kottke.org/plus/misc/images/lotr-google-maps.jpg"/>
+          <img src="https://kottke.org/plus/misc/images/lotr-google-maps.jpg" alt="example"/>
           <hr/>
         </div>
       )

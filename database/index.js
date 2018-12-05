@@ -2,15 +2,15 @@ const Sequelize = require('sequelize');
 const password = require('../config.js').DB_PASSWORD;
 
 const db  = new Sequelize('neighborhood', 'postgres', password, {
-	//change to docker ip
 	host: "3.16.206.192",
 	dialect: 'postgres',
 	pool: {
-		max: 30,
+		max: 1000,
 		min: 0,
-		idle: 10000000,
-		acquire: 10000000
-	}		
+		idle: 10000,
+		acquire: 10000
+	},
+	logging: false		
 });
 
 

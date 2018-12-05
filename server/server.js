@@ -1,25 +1,36 @@
 // require('newrelic');
-// import from "newrelic"
-import express from 'express';
-import morgan from 'morgan';
-import path from 'path';
-import parser from 'body-parser'
+import "newrelic";
+import express from "express";
+import path from "path";
+import parser from "body-parser";
+import cluster from "cluster";
+
 let port = process.env.PORT || 5001;
 
-import router from './routes/router';
+import router from "./routes/router";
 
 // require db, which will initialize it even if `db` is not used anywhere else
-import db from '../database/index';
-let app = express();
+import db from "../database/index";
 
-app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, '../public')));
-app.use(parser.json());
-app.use(parser.urlencoded({
-  extended: true
-}));
-app.use('/', router);
+// if (cluster.isMaster) {
+// 	let cpuCount = require('os').cpus().length;
 
-app.listen(port, () => {
-  console.log(`server running at: http://localhost:${port}`);
-});
+// 	for (var i = 0; i < cpuCount; i += 1) {
+// 		cluster.fork();
+// 	}
+// } else {
+  let app = express();
+
+  app.use(express.static(path.join(__dirname, "../public")));
+  app.use(parser.json());
+  app.use(
+    parser.urlencoded({
+      extended: true
+    })
+  );
+  app.use("/", router);
+
+  app.listen(port, () => {
+    console.log(`server running at: http://localhost:${port}`);
+  });
+// }
