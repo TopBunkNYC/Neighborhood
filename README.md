@@ -19,7 +19,7 @@ npm install
 ## Development
 Set up postgreSQL and create a database named "neighborhood"
 
-Create config.js file and save postgreSQL password in this format
+Create config.js file and save PostgreSQL password in this format
 ```js
 module.exports = {
   DB_PASSWORD: "your_password"
