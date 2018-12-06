@@ -1,5 +1,5 @@
 # Neighborhood
-This is the "Neighborhood" module in our TopBunk web application.
+This is the "Neighborhood" module in our TopBunk web application that implements a scalable back-end on an existing project.
 
 
 ## Related Projects
@@ -19,7 +19,7 @@ npm install
 ## Development
 Set up postgreSQL and create a database named "neighborhood"
 
-Create config.js file and save PostgreSQL password in this format
+Create config.js file and save PostgreSQL password in this format:
 ```js
 module.exports = {
   DB_PASSWORD: "your_password"
@@ -50,7 +50,7 @@ Access the application at (http://localhost:5001)
 
 ## Data Schema
 This module's data is stored in a SQL database. There are three tables: 
-* **Listings:** each record corresponds to one listing on Staybnb, and includes location information (lat/long) and host-inputted descriptions.
+* **Listings:** each record corresponds to one listing on TopBunk, and includes location information (lat/long) and host-inputted descriptions.
 * **Neighborhoods:** each record corresponds to one of 15 neighborhoods in which all listings are located, and includes identifying names for different geographic levels related to the neighborhood as well as seven features of the neighborhood.
 * **Landmarks:** each record corresponds to a well-known landmark in London, along with its location (lat/long). This data will be used to display to the client the five nearest landmarks to a given listing.
 
