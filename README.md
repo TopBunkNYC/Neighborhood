@@ -1,4 +1,4 @@
-# Reviews
+# Neighborhood
 This is the "Neighborhood" module in our TopBunk web application.
 
 
@@ -22,7 +22,7 @@ Set up postgreSQL and create a database named "neighborhood"
 Create config.js file and save postgreSQL password in this format
 ```js
 module.exports = {
-	DB_PASSWORD: "your_password"
+ DB_PASSWORD: "your_password"
 }}
 ```
 
