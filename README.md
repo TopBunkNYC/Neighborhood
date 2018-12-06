@@ -23,7 +23,7 @@ Create config.js file and save postgreSQL password in this format
 ```js
 module.exports = {
   DB_PASSWORD: "your_password"
-}}
+}
 ```
 
 To set up development environment:
