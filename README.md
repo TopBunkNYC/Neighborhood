@@ -42,7 +42,7 @@ npm run go-seed
 npm run seed
 
 # Start the server
-npm start-dev
+npm run start-dev
 ```
 
 Access the application at (http://localhost:5001)
