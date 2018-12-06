@@ -31,13 +31,13 @@ To set up development environment:
 # Compile bundle.js using Webpack
 npm run build
 
-# To create a CSV file with 10 million fake entries using Node.js:
+# Create a CSV file with 10 million fake entries using Node.js
 npm run load
 
-# To create 10 million CSV file with 10 million fake entries using Go:
+# Alternatively, create a CSV file with 10 million fake entries using Go
 npm run go-seed
 
-# To seed Listings CSV, Neighborhood data, and Landmarks data into postgreSQL database:
+# Seed Listings CSV, Neighborhood data, and Landmarks data into postgreSQL database
 npm run seed
 
 # Start the server
