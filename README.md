@@ -8,7 +8,7 @@ This is the "Neighborhood" module in our TopBunk web application that implements
   - https://github.com/TopBunkNYC/Booking
   - https://github.com/TopBunkNYC/Reviews
 
-### Installing Dependencies
+## Installing Dependencies
 
 From within the root directory:
 
