@@ -35,6 +35,7 @@ npm run build
 npm run load
 
 # Alternatively, create a CSV file with 10 million fake entries using Go
+go get github.com/icrowley/fake
 npm run go-seed
 
 # Seed Listings CSV, Neighborhood data, and Landmarks data into postgreSQL database
